@@ -10,7 +10,7 @@ const ROOMS = [
     id: 'r1',
     title: 'STANDARD ROOM',
     slug: 'room-1',
-    hero: 'img-1.jpg',
+    hero: '392_DOM-HDR.jpg',
     stats: [
       { label: 'Житлова площа', value: '18 м²' },
       { label: 'Місткість', value: '2 особи' },
@@ -21,7 +21,7 @@ const ROOMS = [
     id: 'r2',
     title: 'STANDARD ROOM with TERRACE',
     slug: 'room-2',
-    hero: 'img-2.jpg',
+    hero: '348_DOM.jpg',
     stats: [
       { label: 'Житлова площа', value: '18 м²' },
       { label: 'Місткість', value: '2 особи' },
@@ -33,7 +33,7 @@ const ROOMS = [
     id: 'r3',
     title: 'SUITE with TERRACE',
     slug: 'suite',
-    hero: 'img-3.jpg',
+    hero: '025_DOM-HDR.jpg',
     stats: [
 { label: 'Житлова площа', value: '43.8 м²' },
       { label: 'Місткість', value: '2-4 особи' },
@@ -45,7 +45,7 @@ const ROOMS = [
     id: 'r4',
     title: 'DUPLEX SUITE with TERRACE',
     slug: 'suite',
-    hero: 'img-4.jpg',
+    hero: '469_DOM-HDR.jpg',
     stats: [
 { label: 'Житлова площа', value: '67,5 м²' },
       { label: 'Місткість', value: '3-5 осіб' },
@@ -57,7 +57,7 @@ const ROOMS = [
     id: 'r5',
     title: 'PREMIUM COTTAGE with LARGE TERRACE',
     slug: 'suite',
-    hero: 'img-5.jpg',
+    hero: '669_DOM-HDR.jpg',
     stats: [
 { label: 'Житлова площа', value: '62 м²' },
       { label: 'Місткість', value: '2-4 осіб' },

@@ -6,17 +6,18 @@ import CTAButton from '../common/CTAButton/ctaButton'
 
 const TABS = [
   { key: 'restaurant', label: 'Ресторан' },
-  { key: 'bbq',        label: 'BBQ' },
-  { key: 'banya',      label: 'Баня' },
-  { key: 'chan',       label: 'Чан' },
-  { key: 'kids',       label: 'Дитячі зони' },
-  { key: 'events',     label: 'Події' },
+  { key: 'bass',        label: '3 басейни' },
+  { key: 'kidsclub',      label: 'Kids club' },
+  { key: 'ropepark',       label: 'Мотузковий парк' },
+  { key: 'fireplace',       label: 'Fireplace' },
+  { key: 'events',     label: 'Локації для івентів' },
+  { key: 'banya',     label: 'Банний комплекс' },
 ]
 
 const CONTENT = {
   restaurant: {
     title: 'Ресторан',
-    description1: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+    description1: 'Затишний ресторан зі смачною кухнею та панорамним видом на природу. Меню включає європейські та локальні страви.',
     countLabel: 'СТОЛІВ',
     countValue: 24,
     metrics: [
@@ -26,20 +27,80 @@ const CONTENT = {
     ],
     hero: 'img-1.jpg',
   },
-  bbq: {
-    title: 'BBQ',
-    description1: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-    countLabel: 'ГРИЛЬ-ЗОНИ',
-    countValue: 6,
+  bass: {
+    title: '3 басейни',
+    description1: 'Три відкриті басейни з підігрівом: дитячий, дорослий та релакс-басейн з джакузі.',
+    countLabel: 'БАСЕЙНИ',
+    countValue: 3,
     metrics: [
-      { k: 'МАКС. КОМПАНІЯ', v: '12 осіб' },
-      { k: 'ВУГІЛЛЯ/ГАЗ', v: 'вугілля' },
-      { k: 'ОРЕНДА/ГОД', v: '300 ₴' },
+      { k: 'МАКС. ГЛИБИНА', v: '2.2 м' },
+      { k: 'ТЕМПЕРАТУРА ВОДИ', v: '26–28 °C' },
+      { k: 'ГРАФІК РОБОТИ', v: '08:00–21:00' },
     ],
     hero: 'img-2.jpg',
   },
-  // інші так само...
+  kidsclub: {
+    title: 'Kids club',
+    description1: 'Дитячий клуб із професійними аніматорами, ігровими зонами, майстер-класами та дитячим майданчиком.',
+    countLabel: 'ЗОНИ',
+    countValue: 4,
+    metrics: [
+      { k: 'ВІК ДІТЕЙ', v: '3–12 років' },
+      { k: 'АНІМАТОРИ', v: 'щодня' },
+      { k: 'РОБОЧИЙ ЧАС', v: '10:00–20:00' },
+    ],
+    hero: 'img-3.jpg',
+  },
+  ropepark: {
+    title: 'Мотузковий парк',
+    description1: 'Екстремальна розвага серед дерев для дорослих і дітей з кількома рівнями складності.',
+    countLabel: 'ТРАСИ',
+    countValue: 5,
+    metrics: [
+      { k: 'МАКС. ВИСОТА', v: '12 м' },
+      { k: 'ДОВЖИНА ТРОСІВ', v: '1.2 км' },
+      { k: 'РІВНІ СКЛАДНОСТІ', v: 3 },
+    ],
+    hero: 'img-4.jpg',
+  },
+  fireplace: {
+    title: 'Fireplace',
+    description1: 'Атмосферна зона з великим каміном для вечірніх посиденьок, відпочинку та камерних заходів.',
+    countLabel: 'МІСЦЯ',
+    countValue: 20,
+    metrics: [
+      { k: 'ТЕПЛО', v: 'натуральне дров’яне' },
+      { k: 'ЗОНА ДЛЯ BBQ', v: 'є' },
+      { k: 'АТМОСФЕРА', v: 'затишок і релакс' },
+    ],
+    hero: 'img-5.jpg',
+  },
+  events: {
+    title: 'Локації для івентів',
+    description1: 'Різні простори для корпоративних заходів, весіль та вечірок. Є банкетний зал, відкрита тераса та конференц-зала.',
+    countLabel: 'ЛОКАЦІЇ',
+    countValue: 6,
+    metrics: [
+      { k: 'МАКС. ГОСТЕЙ', v: 300 },
+      { k: 'ФОРМАТИ', v: 'банкет, фуршет, конференція' },
+      { k: 'ТЕХНІКА', v: 'звук, світло, екран' },
+    ],
+    hero: 'img-6.jpg',
+  },
+  banya: {
+    title: 'Банний комплекс',
+    description1: 'Традиційний банний комплекс із чанами, сауною та кімнатою релаксу.',
+    countLabel: 'ПАРНІ',
+    countValue: 3,
+    metrics: [
+      { k: 'ТИПИ', v: 'фінська сауна, російська баня, чан' },
+      { k: 'ТЕМПЕРАТУРА', v: 'до 110 °C' },
+      { k: 'ВМІСТИМІСТЬ', v: '10–12 осіб' },
+    ],
+    hero: 'img-7.jpg',
+  },
 }
+
 
 const fadeSlide = {
   initial: { opacity: 0, y: 8 },
@@ -75,7 +136,7 @@ export default function Infrastructure() {
                 aria-selected={activeTab}
                 className={[
                   'px-[18px] py-[10px] h-fit border rounded-full transition',
-                  'text-[18px] uppercase tracking-wide',
+                  'text-[14px] uppercase tracking-wide',
                   activeTab
                     ? 'border-accent bg-accent text-neutral-50'
                     : 'border-accent text-accent/90 hover:bg-accent/10',

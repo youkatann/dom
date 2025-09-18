@@ -57,9 +57,9 @@ export default function Why() {
         </div>
 
         {/* Заголовок перед картками */}
-                  <div className="mt-[72px] flex-1 text-[72px] uppercase text-accent font-bold">
-            Інвестиційна цінність DOM
-          </div>
+        <div className="mt-[72px] flex-1 text-[72px] uppercase text-accent font-bold">
+          Інвестиційна цінність DOM
+        </div>
 
         {/* Квадратні картки */}
         <div className="flex flex-wrap gap-[20px]">
@@ -69,33 +69,34 @@ export default function Why() {
               ref={cardRefs[i]}
               onHoverStart={() => setHovered(i)}
               onHoverEnd={() => setHovered(null)}
-              className="relative w-[calc(25%-15px)] aspect-square rounded-[24px] overflow-hidden cursor-pointer bg-[rgb(149_149_149_/_0.1)] flex items-center justify-center"
+              className="relative w-[calc(25%-15px)] aspect-square rounded-[24px] overflow-hidden cursor-pointer bg-gray-200 flex items-center justify-center"
             >
+              {/* Фонова картинка */}
+              <div
+                className="absolute inset-0 bg-cover bg-center"
+                style={{ backgroundImage: `url(${card.img})` }}
+              />
+
+              {/* Блюр і затемнення */}
+              <motion.div
+                className="absolute inset-0 bg-black/40 backdrop-blur-sm"
+                animate={{ opacity: hovered === i ? 0 : 1 }}
+                transition={{ duration: 0.4 }}
+              />
+
               {/* Нумерація */}
-              <div className="absolute top-3 left-3 text-[28px] font-bold text-foreground">
+              <div className="absolute top-3 left-3 text-[28px] font-bold text-white drop-shadow">
                 ({String(card.id).padStart(2, '0')})
               </div>
 
               {/* Текст */}
               <motion.p
-                className="text-accent text-[20px] font-medium text-center px-4 uppercase"
+                className="text-white text-[20px] font-medium text-center px-4 uppercase drop-shadow"
                 animate={{ opacity: hovered === i ? 0 : 1 }}
                 transition={{ duration: 0.3 }}
               >
                 {card.title}
               </motion.p>
-
-              {/* Фото */}
-              <motion.div
-                className="absolute inset-0 bg-cover bg-center"
-                style={{ backgroundImage: `url(${card.img})` }}
-                initial={false}
-                animate={{
-                  opacity: hovered === i ? 1 : 0,
-                  scale: hovered === i ? 1 : 1.05,
-                }}
-                transition={{ duration: 0.5, ease: 'easeOut' }}
-              />
             </motion.div>
           ))}
         </div>

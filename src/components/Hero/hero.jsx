@@ -86,15 +86,16 @@ export default function Hero({ isLoading, cursorRef }) {
 
       {/* Анімований блок */}
       <h1 data-scroll data-scroll-speed="0.2" className="text-[8em] leading-[0.9] tracking-tighter text-neutral font-medium uppercase col-start-1 col-end-5 row-start-2 row-end-2 z-5 text-center">
-        Готовий staycation-готель у 15 хвилинах від Києва
+        Готовий staycation-готель <span className='text-[0.5em]'>у 15 хвилинах від Києва</span>
       </h1>
+      
       <p data-scroll data-scroll-speed="0.3" className='col-start-3 row-start-3 z-5 text-neutral text-[1.5em] uppercase tracking-tight leading-[1.2]'>
         Safe space для життя і відпочинку поруч зі столицею. Надійний актив для інвестора, що працює вже сьогодні
       </p>
-      <div data-scroll data-scroll-speed="0.001" className='col-start-4 row-start-4 row-end-4 flex items-end justify-end z-5 text-neutral'>
+      <div data-scroll data-scroll-speed="0.001" className='col-start-3 row-start-4 row-end-4 flex z-5 text-neutral items-start'>
         <CTAButton title="Отримати пропозицію"/>
       </div>
-      <ul data-scroll data-scroll-speed="0.1" className='pl-[24px] col-start-1 col-end-3 flex flex-col justify-end row-start-4 z-5 text-neutral text-[1.2em] uppercase tracking-tight leading-[1.2] opacity-80 list-disc'>
+      <ul data-scroll data-scroll-speed="0.1" className='pl-[24px] col-start-1 col-end-3 flex flex-col row-start-4 z-5 text-neutral text-[1.2em] uppercase tracking-tight leading-[1.2] opacity-80 list-disc'>
         <li>Працюючий готельний комплекс</li>
         <li>Повна курортна інфраструктура</li>
         <li>Гарантований викуп</li>
