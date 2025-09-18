@@ -11,8 +11,8 @@ export default function Hero({ isLoading, cursorRef }) {
     target: heroRef,
     offset: ["start start", "end start"]
   })
-  const heroScale = useTransform(scrollYProgress, [0.2,1], [1,0.97])
-  const heroRadius = useTransform(scrollYProgress, [0,1], [0,36])
+  const heroScale = useTransform(scrollYProgress, [0.2, 1], [1, 0.97])
+  const heroRadius = useTransform(scrollYProgress, [0, 1], [0, 36])
   const heroSubtitle = useTransform(scrollYProgress, [0, 0.5], [1, 0])
   const [nat, setNat] = useState(null)   // { w, h }
   const [scale, setScale] = useState(1)
@@ -52,7 +52,7 @@ export default function Hero({ isLoading, cursorRef }) {
     <motion.section
       ref={heroRef}
       data-scroll-section
-      className="relative grid w-screen h-screen p-[20px] overflow-hidden origin-center grid-cols-4 gap-[20px] grid-rows-4"
+      className="relative grid w-screen h-screen p-[16px] overflow-hidden origin-center grid-cols-4 gap-[16px] grid-rows-4"
       style={{
         scale: heroScale,
         transformOrigin: "center center",
@@ -84,18 +84,52 @@ export default function Hero({ isLoading, cursorRef }) {
       {/* затемнення */}
       <div className="absolute inset-0 bg-black/40 z-1 pointer-events-none" />
 
-      {/* Анімований блок */}
-      <h1 data-scroll data-scroll-speed="0.2" className="text-[8em] leading-[0.9] tracking-tighter text-neutral font-medium uppercase col-start-1 col-end-5 row-start-2 row-end-2 z-5 text-center">
-        Готовий staycation-готель <span className='text-[0.5em]'>у 15 хвилинах від Києва</span>
+      {/* Анімований заголовок */}
+      <h1
+        data-scroll
+        data-scroll-speed="0.2"
+        className="
+          font-medium uppercase z-5 text-center tracking-tighter leading-[0.9] text-neutral 
+          col-start-1 col-end-5 row-start-2 row-end-2
+          text-[clamp(2rem,6vw,7rem)]
+        "
+      >
+        Готовий staycation-готель
+        <span className="block tracking-wide text-[clamp(1rem,1.8vw,1.75rem)]">
+          у 15 хвилинах від Києва
+        </span>
       </h1>
-      
-      <p data-scroll data-scroll-speed="0.3" className='col-start-3 row-start-3 z-5 text-neutral text-[1.5em] uppercase tracking-tight leading-[1.2]'>
+
+      {/* Підзаголовок */}
+      <p
+        data-scroll
+        data-scroll-speed="0.3"
+        className="
+          col-start-3 row-start-3 z-5 text-neutral uppercase tracking-tight leading-[1.2]
+          text-[clamp(0.85rem,1.3vw,1.1rem)]
+        "
+      >
         Safe space для життя і відпочинку поруч зі столицею. Надійний актив для інвестора, що працює вже сьогодні
       </p>
-      <div data-scroll data-scroll-speed="0.001" className='col-start-3 row-start-4 row-end-4 flex z-5 text-neutral items-start'>
-        <CTAButton title="Отримати пропозицію"/>
+
+      {/* Кнопка */}
+      <div
+        data-scroll
+        data-scroll-speed="0.001"
+        className="col-start-3 row-start-4 row-end-4 flex z-5 text-neutral items-start"
+      >
+        <CTAButton title="Отримати пропозицію" />
       </div>
-      <ul data-scroll data-scroll-speed="0.1" className='pl-[24px] col-start-1 col-end-3 flex flex-col row-start-4 z-5 text-neutral text-[1.2em] uppercase tracking-tight leading-[1.2] opacity-80 list-disc'>
+
+      {/* Ліст */}
+      <ul
+        data-scroll
+        data-scroll-speed="0.1"
+        className="
+          pl-[20px] col-start-1 col-end-3 flex flex-col row-start-4 z-5 text-neutral opacity-80 list-disc
+          text-[clamp(0.75rem,1.1vw,0.95rem)] tracking-tight leading-[1.2]
+        "
+      >
         <li>Працюючий готельний комплекс</li>
         <li>Повна курортна інфраструктура</li>
         <li>Гарантований викуп</li>

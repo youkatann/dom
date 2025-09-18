@@ -135,7 +135,7 @@ export default function Infrastructure() {
                 onKeyDown={(e) => onKey(e, t.key)}
                 aria-selected={activeTab}
                 className={[
-                  'px-[18px] py-[10px] h-fit border rounded-full transition',
+                  'px-[12px] py-[10px] h-fit border rounded-full transition',
                   'text-[14px] uppercase tracking-wide',
                   activeTab
                     ? 'border-accent bg-accent text-neutral-50'
