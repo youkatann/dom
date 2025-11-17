@@ -1,30 +1,42 @@
 import CTAButton from "../common/CTAButton/ctaButton"
-import Video from 'next-video'
-import heroBG from '/videos/DOM_2.mp4'
+import Video from "next-video"
+import heroBG from "/videos/DOM_2.mp4"
 
-export default function Project () {
-    return (
-      <section className="mt-[300px] p-[20px] grid grid-cols-12 gap-[20px] grid-rows-[repeat(8,156px)] bg-neutral">
-        <h2 className="row-start-1 col-start-1 col-end-6 text-[72px] text-accent font-bold tracking-tighter">ПРО ПРОЄКТ</h2>
-        <div className="row-start-1 col-start-9 col-end-13 flex justify-end">
-          <div className="w-fit">
-            <CTAButton title="Отримати фінансові розрахунки"/>
-          </div>
+export default function Project() {
+  return (
+    <section
+      id="Project"
+      className="mt-[120px] sm:mt-[200px] lg:mt-[300px] px-[16px] sm:px-[24px] md:px-[40px] py-[40px] sm:py-[60px] bg-neutral flex flex-col gap-[40px]"
+    >
+      {/* Верхній блок */}
+      <div className="flex flex-col md:flex-row justify-between items-center md:items-start gap-[24px] md:gap-[40px]">
+        <h2 className="text-[36px] sm:text-[48px] md:text-[60px] lg:text-[72px] text-accent font-bold tracking-tighter text-center md:text-left">
+          ПРО ПРОЄКТ
+        </h2>
+        <div className="w-full md:w-fit flex justify-center md:justify-end">
+          <CTAButton title="Отримати фінансові розрахунки" />
         </div>
-        <div 
+      </div>
+
+      {/* Відео-блок */}
+      <div
+        className="w-full overflow-hidden rounded-[16px] sm:rounded-[20px] md:rounded-[24px]"
         style={{
-          borderRadius: 24
+          borderRadius: 24,
         }}
-        className="col-start-1 col-end-13 row-start-2 row-end-7 rounded-[24px]">
-        <Video
-          src={heroBG}
-          autoplay
-          muted
-          loop
-          playsInline
-          controls={false}
+      >
+        <div className="relative w-full pb-[56.25%] sm:pb-[50%] md:pb-[45%] overflow-hidden rounded-[24px]">
+          <Video
+            src={heroBG}
+            autoplay
+            muted
+            loop
+            playsInline
+            controls={false}
+            className="absolute inset-0 w-full h-full object-cover"
           />
         </div>
-      </section>
-    )
+      </div>
+    </section>
+  )
 }

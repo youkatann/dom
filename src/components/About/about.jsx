@@ -1,70 +1,95 @@
-const REVIEWS = [
-  {
-    name: "Ірина Литвин",
-    avatarUrl: "img-1.jpg",
-    rating: "5",
-    text: "Дуже затишне місце, атмосферно і смачна кухня. Персонал привітний, завжди допоможе з вибором."
-  },
-  {
-    name: "Олександр Кравченко",
-    avatarUrl: "img-2.jpg",
-    rating: "5",
-    text: "Було відчуття, що я у себе вдома. Дякую за сервіс і теплий прийом!"
-  },
-  {
-    name: "Марія Петренко",
-    avatarUrl: "img-3.jpg",
-    rating: "5",
-    text: "Дім з великої букви. Чудова атмосфера, стильний інтер’єр, обов’язково прийду ще."
-  },
-  {
-    name: "Andrii S.",
-    avatarUrl: "img-4.jpg",
-    rating: "5",
-    text: "Місце, куди хочеться повертатися. Все на високому рівні."
-  },
-  {
-    name: "Kateryna H.",
-    avatarUrl: "img-5.jpg",
-    rating: "5",
-    text: "Відпочивали компанією, всі залишились у захваті. Дякуємо!"
-  }
-];
+'use client'
+import { useRef, useEffect, useState } from 'react'
+import { motion } from 'framer-motion'
+
+const MEDIA_REVIEWS = [
+  { src: 'media-1.PNG' },
+  { src: 'media-2.PNG' },
+  { src: 'media-3.PNG' },
+  { src: 'media-4.PNG' },
+  { src: 'media-5.PNG' },
+  { src: 'media-6.PNG' },
+  { src: 'media-7.PNG' },
+  { src: 'media-8.PNG' },
+  { src: 'media-9.PNG' },
+  { src: 'media-10.PNG' },
+  { src: 'media-11.PNG' },
+]
 
 export default function About() {
+  const scrollRef = useRef(null)
+  const [paused, setPaused] = useState(false)
+
+  useEffect(() => {
+    const el = scrollRef.current
+    if (!el) return
+
+    const scrollSpeed = 0.5
+    let frame
+
+    const loop = () => {
+      if (!paused) {
+        if (el.scrollLeft >= el.scrollWidth - el.clientWidth) {
+          el.scrollLeft = 0
+        } else {
+          el.scrollLeft += scrollSpeed
+        }
+      }
+      frame = requestAnimationFrame(loop)
+    }
+
+    frame = requestAnimationFrame(loop)
+    return () => cancelAnimationFrame(frame)
+  }, [paused])
+
+  const handleUserScroll = () => {
+    setPaused(true)
+    clearTimeout(scrollRef.current?.scrollTimeout)
+    scrollRef.current.scrollTimeout = setTimeout(() => setPaused(false), 1500)
+  }
+
   return (
-    <section className="p-[20px] bg-neutral flex flex-col">
-      <h2 className="mb-[40px]">
-        <span className="text-[72px] tracking-tighter text-accent uppercase font-bold">
-          Відгуки гостей DOM
-        </span>
+    <section
+      id="Reviews"
+      className="px-[16px] sm:px-[24px] md:px-[40px] py-[40px] sm:py-[60px] bg-neutral flex flex-col gap-[40px] sm:gap-[60px] rounded-[24px] sm:rounded-[32px] overflow-hidden"
+    >
+      {/* Заголовок */}
+      <h2 className="text-center font-bold uppercase tracking-tighter text-[#FF4F19]
+        text-[32px] sm:text-[48px] md:text-[60px] lg:text-[72px] leading-[1.1]"
+      >
+        Відгуки гостей DOM
       </h2>
 
-      <div className="grid grid-cols-3 gap-[32px]">
-        {REVIEWS.map((rev, idx) => (
-          <div
-            key={idx}
-            className="flex gap-[16px] bg-neutral p-[24px] border border-foreground/50 rounded-[24px]"
-          >
-            <div className="flex-shrink-0">
+      {/* Карусель */}
+      <div className="mt-[20px] sm:mt-[40px]">
+        <motion.div
+          ref={scrollRef}
+          className="flex gap-[12px] sm:gap-[20px] overflow-x-scroll no-scrollbar px-[10px] cursor-grab active:cursor-grabbing"
+          onMouseEnter={() => setPaused(true)}
+          onMouseLeave={() => setPaused(false)}
+          onScroll={handleUserScroll}
+          whileTap={{ cursor: 'grabbing' }}
+        >
+          {MEDIA_REVIEWS.map((media, i) => (
+            <motion.div
+              key={i}
+              className="
+                flex-shrink-0 
+                w-[80%] xs:w-[60%] sm:w-[45%] md:w-[30%] lg:w-[25%] 
+                rounded-[16px] sm:rounded-[20px] overflow-hidden shadow bg-white
+                transition-transform
+              "
+              whileHover={{ scale: 1.03 }}
+            >
               <img
-                src={rev.avatarUrl}
-                alt={`${rev.name} avatar`}
-                className="w-[64px] h-[64px] rounded-full object-cover"
+                src={media.src}
+                alt={`Review ${i + 1}`}
+                className="w-full aspect-[9/16] object-cover"
               />
-            </div>
-            <div className="flex flex-col justify-between">
-              <div className="flex justify-between">
-                <span className="text-[28px]">{rev.name}</span>
-                <span className="text-[28px] uppercase text-accent">
-                  {rev.rating}+
-                </span>
-              </div>
-              <span className="text-[18px] text-foreground/50">{rev.text}</span>
-            </div>
-          </div>
-        ))}
+            </motion.div>
+          ))}
+        </motion.div>
       </div>
     </section>
-  );
+  )
 }

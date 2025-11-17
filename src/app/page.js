@@ -1,9 +1,7 @@
 'use client'
 import { useEffect, useState, useRef } from "react";
-import { AnimatePresence } from "motion/react"
 import StickyCursor from "@/components/StickyCursor/stickyCursor";
 import Hero from "@/components/Hero/hero";
-import Preloader from "@/components/Preloader/preloader";
 import Header from "@/components/Header/header";
 import Why from "@/components/Why/why";
 import MainButton from "@/components/common/Button/button";
@@ -11,7 +9,6 @@ import Project from "@/components/Project/project"
 import Stats from "@/components/Stats/stats"
 import Rooms from "@/components/Rooms/rooms"
 import Infrastructure from "@/components/Infrastructure/infrastructure"
-import Security from "@/components/Security/security"
 import Trust from "@/components/Trust/trust"
 import About from "@/components/About/about"
 import FAQ from "@/components/FAQ/faq"
