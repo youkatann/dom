@@ -25,7 +25,7 @@ export default function Project() {
           borderRadius: 24,
         }}
       >
-        <div className="relative w-full pb-[56.25%] sm:pb-[50%] md:pb-[45%] overflow-hidden rounded-[24px]">
+        <div className="relative w-full pb-[100px] overflow-hidden rounded-[24px]">
           <Video
             src={heroBG}
             autoplay
