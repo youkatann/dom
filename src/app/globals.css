@@ -2,7 +2,8 @@
 
 :root {
   --neutral: #FFEBD8;
-  --accent: #FF5C28;
+  --accent: #FF3E00;
+  --accent-muted: #C42F00;
   --foreground: #321800;
 }
 
@@ -15,8 +16,42 @@
 body {
   background: var(--neutral);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "eUkraine", sans-serif;
+  font-weight: 400;
 }
-*{
-    cursor: none;
+
+@font-face {
+  font-family: "eUkraine";
+  src: url("../fonts/e-Ukraine-Thin.otf") format("opentype");
+  font-weight: 100; /* Thin */
+}
+
+@font-face {
+  font-family: "eUkraine";
+  src: url("../fonts/e-Ukraine-UltraLight.otf") format("opentype");
+  font-weight: 200; /* UltraLight */
+}
+
+@font-face {
+  font-family: "eUkraine";
+  src: url("../fonts/e-Ukraine-Light.otf") format("opentype");
+  font-weight: 300; /* Light */
+}
+
+@font-face {
+  font-family: "eUkraine";
+  src: url("../fonts/e-Ukraine-Regular.otf") format("opentype");
+  font-weight: 400; /* Regular */
+}
+
+@font-face {
+  font-family: "eUkraine";
+  src: url("../fonts/e-Ukraine-Medium.otf") format("opentype");
+  font-weight: 500; /* Medium */
+}
+
+@font-face {
+  font-family: "eUkraine";
+  src: url("../fonts/e-Ukraine-Bold.otf") format("opentype");
+  font-weight: 700; /* Bold */
 }

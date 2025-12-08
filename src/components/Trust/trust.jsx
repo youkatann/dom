@@ -1,6 +1,6 @@
 'use client'
 import { useState } from "react"
-import { motion, AnimatePresence } from "framer-motion"
+import { motion } from "framer-motion"
 import CTAButton from "../common/CTAButton/ctaButton"
 
 const PARTNERS = [
@@ -14,7 +14,7 @@ const PARTNERS = [
 ]
 
 export default function Trust() {
-  const [activePartner, setActivePartner] = useState(null)
+  const activePartner = PARTNERS[0] // Інформація завжди показана, без кліків
 
   return (
     <section
@@ -31,7 +31,7 @@ export default function Trust() {
         </span>
 
         <img
-          src="/Dom_Logo.svg"
+          src="/Dom_Logo_Orange.svg"
           className="w-[100px] sm:w-[120px] mx-auto lg:mx-0 mt-[10px] lg:mt-0"
           alt="DOM Logo"
         />
@@ -48,7 +48,7 @@ export default function Trust() {
       </div>
 
       {/* Лінія */}
-      <hr className="w-full border-foreground/30" />
+      <hr className="w-full border-foreground/10 h-[0.5px]" />
 
       {/* Статистика */}
       <div className="flex flex-col sm:flex-row justify-center items-center gap-[20px] sm:gap-[40px] md:gap-[80px] text-[18px] sm:text-[22px] md:text-[28px] leading-[1.2] text-foreground text-center">
@@ -56,8 +56,10 @@ export default function Trust() {
           <span className="text-accent font-semibold">2 га</span> – площа всього відпочинкового комплексу
         </span>
         <span>
-          <span className="text-accent font-semibold">4.5</span> рейтинг Google Maps /{" "}
-          <span className="text-accent font-semibold">480</span> відгуків
+          <a href="https://www.google.com/travel/hotels/s/x2GbXbk2k2hV1n9X6">
+            <span className="text-accent font-semibold">4.5</span> рейтинг Google Maps /{" "}
+            <span className="text-accent font-semibold">480</span> відгуків
+          </a>
         </span>
         <span>
           <span className="text-accent font-semibold">4 роки</span> функціонування бізнесу WELCOME DOM
@@ -65,71 +67,31 @@ export default function Trust() {
       </div>
 
       {/* Партнери */}
-      <div className="flex flex-col items-center gap-[30px] sm:gap-[40px] mt-[20px] sm:mt-[40px]">
-        <h2 className="text-[32px] sm:text-[40px] md:text-[48px] font-bold text-accent text-center">
+      <div className="flex flex-col gap-[30px] sm:gap-[40px] mt-[20px] sm:mt-[40px]">
+        <h2 className="text-[32px] sm:text-[40px] md:text-[48px] font-bold text-accent uppercase tracking-tighter text-center lg:text-left">
           Партнери
         </h2>
 
-        <div className="flex justify-center flex-wrap gap-[40px] sm:gap-[60px]">
-          {PARTNERS.map((partner) => (
-            <motion.button
-              key={partner.id}
-              whileHover={{ scale: 1.08 }}
-              whileTap={{ scale: 0.96 }}
-              onClick={() => setActivePartner(partner)}
-              className="transition"
-            >
-              <img
-                src={partner.logo}
-                alt={partner.name}
-                className="w-[100px] sm:w-[120px] md:w-[140px] h-auto opacity-80 hover:opacity-100 transition"
-              />
-            </motion.button>
-          ))}
-        </div>
+        {/* СТАЦІОНАРНИЙ ІНФОБЛОК */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.4 }}
+          className="p-[24px] sm:p-[40px] max-w-[800px] mt-[20px] bg-[rgb(149_149_149_/_0.1)]"
+        >
+          <img
+            src={activePartner.logo}
+            alt={activePartner.name}
+            className="w-[80px] sm:w-[100px] md:w-[120px] mx-auto mb-[20px]"
+          />
+          <h3 className="text-[24px] sm:text-[28px] md:text-[32px] font-bold mb-[20px] text-accent">
+            {activePartner.name}
+          </h3>
+          <p className="text-[15px] sm:text-[16px] md:text-[18px] text-foreground/70 leading-[1.5]">
+            {activePartner.description}
+          </p>
+        </motion.div>
       </div>
-
-      {/* Попап */}
-      <AnimatePresence>
-        {activePartner && (
-          <motion.div
-            className="fixed inset-0 bg-black/60 backdrop-blur-sm flex justify-center items-center z-50 px-[16px]"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            onClick={() => setActivePartner(null)}
-          >
-            <motion.div
-              className="bg-neutral p-[24px] sm:p-[40px] rounded-2xl max-w-[90%] sm:max-w-[600px] text-center shadow-lg relative"
-              initial={{ scale: 0.8, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.8, opacity: 0 }}
-              transition={{ duration: 0.25, ease: 'easeOut' }}
-              onClick={(e) => e.stopPropagation()}
-            >
-              <img
-                src={activePartner.logo}
-                alt={activePartner.name}
-                className="w-[80px] sm:w-[100px] md:w-[120px] mx-auto mb-[20px]"
-              />
-              <h3 className="text-[24px] sm:text-[28px] md:text-[32px] font-bold mb-[20px] text-accent">
-                {activePartner.name}
-              </h3>
-              <p className="text-[15px] sm:text-[16px] md:text-[18px] text-foreground/70 mb-[30px] leading-[1.5]">
-                {activePartner.description}
-              </p>
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                onClick={() => setActivePartner(null)}
-                className="px-[24px] sm:px-[30px] py-[10px] bg-accent text-neutral font-semibold rounded-full hover:bg-accent/80 transition"
-              >
-                Закрити
-              </motion.button>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
     </section>
   )
 }

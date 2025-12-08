@@ -1,6 +1,5 @@
 'use client'
 import { useEffect, useState, useRef } from "react";
-import StickyCursor from "@/components/StickyCursor/stickyCursor";
 import Hero from "@/components/Hero/hero";
 import Header from "@/components/Header/header";
 import Why from "@/components/Why/why";
@@ -12,6 +11,7 @@ import Infrastructure from "@/components/Infrastructure/infrastructure"
 import Trust from "@/components/Trust/trust"
 import About from "@/components/About/about"
 import FAQ from "@/components/FAQ/faq"
+import Footer from "@/components/Footer/Footer";
 
 export default function Home() {
 
@@ -37,11 +37,6 @@ export default function Home() {
 
   return (
     <main data-scroll-container>
-         <StickyCursor
-        targets={[
-          { ref: heroVidRef,  render: () => <MainButton/> },
-        ]}
-      />
     <Header ref={stickyElement}/>
     <Hero cursorRef={heroVidRef} isLoading={isLoading} />
     <Why/>
@@ -52,6 +47,7 @@ export default function Home() {
     <Trust/>
     <About/>
     <FAQ/>
+    <Footer/>
     </main>
   );
 }

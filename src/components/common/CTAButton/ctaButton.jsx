@@ -63,7 +63,7 @@ function PopupForm({ isOpen, onClose }) {
               </button>
 
               <h2 className="text-3xl font-extrabold text-accent mb-6 text-center uppercase">
-                Зворотній зв’язок
+                Отримати фінансові розрахунки
               </h2>
 
               {!sent && (
@@ -126,12 +126,12 @@ export default function CTAButton({ title }) {
     <>
       <button
         onClick={() => setIsOpen(true)}
-        className="py-[12px] px-[16px] text-[16px] flex justify-center items-center font-bold uppercase relative group"
+        className="py-[0px] md:py-[12px] px-[0px] md:px-[16px] text-[12px] md:text-[16px] flex justify-center items-center font-bold uppercase relative group cursor-pointer leading-[1]"
       >
-        <span className="block">
-          <span className="text-[36px] italic">(</span>{' '}
+        <span className="flex items-center gap-2">
+          <span className="text-[24px] md:text-[36px] italic">(</span>{' '}
           <span className="group-hover:text-accent transition">{title}</span>{' '}
-          <span className="text-[36px] italic">)</span>
+          <span className="text-[24px] md:text-[36px] italic">)</span>
         </span>
       </button>
 

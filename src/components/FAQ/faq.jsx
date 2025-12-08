@@ -50,24 +50,26 @@ export default function FAQ() {
   return (
     <section
       id="Faq"
-      className="mt-[150px] md:mt-[200px] xl:mt-[300px] px-[16px] sm:px-[24px] md:px-[40px] py-[40px] md:py-[60px] bg-neutral grid grid-cols-1 md:grid-cols-12 gap-[20px]"
+      className="mt-[80px] px-[16px] sm:px-[24px] md:px-[40px] py-[40px] md:py-[60px] bg-neutral 
+      flex flex-col gap-[20px] md:flex-row md:flex-wrap"
     >
       {/* Заголовок */}
-      <h2 className="text-[32px] sm:text-[48px] md:text-[60px] lg:text-[72px] text-accent font-bold uppercase md:col-span-7">
-        Відповіді на питання
+      <h2 className="text-[32px] sm:text-[48px] md:text-[60px] lg:text-[72px] text-accent font-bold uppercase tracking-tighter 
+      flex-[7] text-center lg:text-left">
+        Часті запитання
       </h2>
 
       {/* Кнопка */}
-      <div className="md:col-span-5 flex md:justify-end mt-[20px] md:mt-0">
+      <div className="flex-[5] flex justify-center md:justify-end mt-[20px] md:mt-0">
         <CTAButton title="Отримати фінансові розрахунки" />
       </div>
-
+<hr className="w-full border-foreground/10 h-[0.5px]" />
       {/* Список */}
       <motion.ul
         initial="hidden"
         animate="show"
         variants={listVariants}
-        className="md:col-span-12 mt-[60px] flex flex-col gap-[10px]"
+        className="mt-[60px] flex flex-col gap-[10px] w-full"
       >
         {ITEMS.map((it, i) => {
           const isOpen = open === i
@@ -89,9 +91,10 @@ export default function FAQ() {
                 aria-expanded={isOpen}
                 className="w-full py-4 sm:py-5 flex items-center justify-between text-left"
               >
-                <span className="text-[20px] sm:text-[28px] md:text-[36px] lg:text-[48px] font-medium text-accent tracking-tight pr-6">
+                <span className="text-[20px] lg:text-[40px] font-medium text-accent tracking-tighter pr-6">
                   {it.q}
                 </span>
+
                 <motion.span
                   animate={{ rotate: isOpen ? 45 : 0 }}
                   transition={{ type: 'spring', stiffness: 260, damping: 20 }}

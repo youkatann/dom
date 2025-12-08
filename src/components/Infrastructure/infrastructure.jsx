@@ -6,28 +6,94 @@ import CTAButton from '../common/CTAButton/ctaButton'
 
 const TABS = [
   { key: 'restaurant', label: 'Ресторан' },
-  { key: 'bass', label: '3 басейни' },
-  { key: 'kidsclub', label: 'Kids club' },
-  { key: 'ropepark', label: 'Мотузковий парк' },
-  { key: 'fireplace', label: 'Fireplace' },
-  { key: 'events', label: 'Локації для івентів' },
-  { key: 'banya', label: 'Банний комплекс' },
+  { key: 'bass',        label: '3 басейни' },
+  { key: 'kidsclub',      label: 'Kids club' },
+  { key: 'ropepark',       label: 'Мотузковий парк' },
+  { key: 'fireplace',       label: 'Fireplace' },
+  { key: 'events',     label: 'Локації для івентів' },
+  { key: 'banya',     label: 'Банний комплекс' },
 ]
 
 const CONTENT = {
   restaurant: {
     title: 'Ресторан',
-    description1:
-      'Затишний ресторан зі смачною кухнею та панорамним видом на природу. Меню включає європейські та локальні страви.',
+    description1: 'Затишний ресторан зі смачною кухнею та панорамним видом на природу. Меню включає європейські та локальні страви.',
+    countLabel: 'столів',
+    countValue: 24,
     metrics: [
-      { k: 'КІЛЬКІСТЬ ПОСАДКОВИХ МІСЦЬ', v: 150 },
-      { k: 'СЕРЕДНІЙ ЧЕК', v: '800 ₴' },
-      { k: 'ГРАФІК РОБОТИ', v: '09:00–23:00' },
     ],
     hero: 'restaurant-1.jpg',
     subphoto: 'restaurant-2.jpg',
   },
-  // інші ключі залишаються без змін...
+  bass: {
+    title: '3 басейни',
+    description1: 'На території комплексу — три басейни з підігрівом. Комфортне плавання у будь-яку погоду теплого сезону',
+    countLabel: 'Басейни',
+    countValue: 3,
+    metrics: [
+      { k: 'Глибина', v: 'до 1.5м' },
+    ],
+    hero: 'pools-1.jpg',
+    subphoto: 'pools-2.jpg',
+  },
+  kidsclub: {
+    title: 'Kids club',
+    description1: 'Триповерховий дитячий простір, де малеча бешкетує разом з нянями та займається творчістю на майстер класах',
+    countLabel: 'Зони',
+    countValue: 4,
+    metrics: [
+      { k: 'Поверхи', v: '3' },
+      { k: 'Вік', v: 'від 3-ох років' },
+      { k: 'Відвідування', v: 'безкоштовне' },
+    ],
+    hero: 'kids-1.jpg',
+    subphoto: 'kids-2.jpg',
+  },
+  ropepark: {
+    title: 'Мотузковий парк',
+    description1: 'Момент полазити та подолати канатні перешкоди настав',
+    countLabel: 'Траси',
+    countValue: 5,
+    metrics: [
+      { k: '', v: '' },
+    ],
+    hero: 'rope-1.jpg',
+    subphoto: 'rope-2.jpg',
+  },
+  fireplace: {
+    title: 'Fireplace',
+    description1: 'Затишне місце, де можна зібратися з друзями за келихом вина, а навкруги — свіже лісове повітря. Відпочивай та не думай ні про що',
+    countLabel: 'Місць',
+    countValue: 20,
+    metrics: [
+      { k: '', v: '' },
+    ],
+    hero: 'fireplace.png',
+    subphoto: 'fireplace.png',
+  },
+  events: {
+    title: 'Локації для івентів',
+    description1: 'Місця, які здатні на все, від помпезного весілля з ідеально розташованою весільною церемонією на терасі до конференції, масштабної презентації та корпоративу',
+    countLabel: 'Локації',
+    countValue: 6,
+    metrics: [
+      { k: 'Місткість', v: "до 100" },
+    ],
+    hero: 'event-1.jpg',
+    subphoto: 'event-2.jpg',
+  },
+  banya: {
+    title: 'Банний комплекс',
+    description1: 'Місце сили, відновлення та відпочинку. Відчуй, як сповільнюється час, коли SPA-простір DOM належить тільки тобі',
+    countLabel: 'Парні',
+    countValue: 3,
+    metrics: [
+      { k: 'Типи', v: 'фінська сауна, хамам' },
+      { k: 'Безкоштовне відвідування', v: 'до 6-ти років' },
+    ],
+    hero: 'banya.png',
+    subphoto: 'banya.png',
+  },
 }
 
 const fadeSlide = {
@@ -38,6 +104,8 @@ const fadeSlide = {
 
 export default function Infrastructure() {
   const [active, setActive] = useState('restaurant')
+
+  // без fallback тут — бо ми хочемо варіант 2: fallback у JSX
   const data = useMemo(() => CONTENT[active], [active])
 
   const onKey = (e, key) => {
@@ -54,11 +122,10 @@ export default function Infrastructure() {
     >
       {/* Заголовок */}
       <div className="flex flex-col xl:flex-row xl:items-center xl:justify-between gap-[20px]">
-        <h2 className="text-[36px] sm:text-[48px] md:text-[60px] lg:text-[64px] xl:text-[72px] tracking-tighter text-accent font-bold uppercase">
+        <h2 className="text-[36px] sm:text-[48px] md:text-[60px] lg:text-[64px] xl:text-[76px] tracking-tighter text-accent font-bold uppercase">
           Інфраструктура
         </h2>
-
-        {/* Tabs для XL і більше */}
+        {/* Tabs */}
         <div className="hidden xl:flex flex-wrap gap-[10px] justify-end">
           {TABS.map((t) => {
             const activeTab = t.key === active
@@ -70,7 +137,7 @@ export default function Infrastructure() {
                 onKeyDown={(e) => onKey(e, t.key)}
                 aria-selected={activeTab}
                 className={[
-                  'px-[14px] py-[8px] border rounded-full transition text-[14px] uppercase tracking-wide',
+                  'px-[14px] py-[8px] border transition text-[12px] uppercase tracking-wide',
                   activeTab
                     ? 'border-accent bg-accent text-neutral-50'
                     : 'border-accent text-accent/90 hover:bg-accent/10',
@@ -83,12 +150,12 @@ export default function Infrastructure() {
           })}
         </div>
 
-        {/* Select для менших, ніж XL */}
+        {/* Select */}
         <div className="xl:hidden relative w-full md:w-[300px]">
           <select
             value={active}
             onChange={(e) => setActive(e.target.value)}
-            className="w-full border border-accent rounded-full bg-transparent text-accent px-[14px] py-[10px] text-[14px] uppercase tracking-wide cursor-pointer focus:outline-none focus:ring-2 focus:ring-accent/30 appearance-none"
+            className="w-full border border-accent bg-transparent text-accent px-[14px] py-[10px] text-[14px] uppercase tracking-wide cursor-pointer focus:outline-none focus:ring-2 focus:ring-accent/30 appearance-none"
           >
             {TABS.map((t) => (
               <option key={t.key} value={t.key} className="text-black">
@@ -97,7 +164,6 @@ export default function Infrastructure() {
             ))}
           </select>
 
-          {/* SVG-стрілочка */}
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 20 20"
@@ -112,21 +178,11 @@ export default function Infrastructure() {
           </svg>
         </div>
       </div>
-
-      {/* Опис */}
-      <AnimatePresence mode="wait">
-        <motion.p
-          key={`desc-${active}`}
-          {...fadeSlide}
-          className="text-[18px] sm:text-[20px] font-medium text-foreground max-w-[600px]"
-        >
-          {data.description1}
-        </motion.p>
-      </AnimatePresence>
-
+<hr className="w-full border-foreground/10 h-[0.5px]" />
       {/* Контент */}
       <div className="flex flex-col lg:flex-row gap-[20px] w-full">
-        <div className="w-full lg:w-[70%] relative rounded-2xl overflow-hidden">
+        {/* Основне фото */}
+        <div className="w-full lg:w-[60%] relative overflow-hidden">
           <AnimatePresence mode="wait">
             <motion.div
               key={active}
@@ -140,43 +196,59 @@ export default function Infrastructure() {
               }}
             >
               <img
-                src={data.hero}
-                alt={data.title}
-                className="w-full h-[250px] sm:h-[350px] md:h-[500px] lg:h-[600px] object-cover"
+                src={data?.hero ?? '/placeholder.jpg'}
+                alt={data?.title ?? ''}
+                className="w-full h-full object-cover"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
             </motion.div>
           </AnimatePresence>
         </div>
 
-        <div className="w-full lg:w-[30%] flex flex-col gap-[20px]">
-          <div className="rounded-2xl overflow-hidden bg-gray-200">
+        {/* Правий блок */}
+        <div className="w-full lg:w-[40%] flex flex-col gap-[20px]">
+          <div className="bg-[rgb(149_149_149_/_0.1)] p-[20px] flex flex-col justify-between">
+            <h3 className="text-[30px] font-semibold text-accent mb-[10px] uppercase tracking-tighter">
+              {data?.title ?? '—'}
+            </h3>
+              <AnimatePresence mode="wait">
+                <motion.p
+                  key={`desc-${active}`}
+                  {...fadeSlide}
+                  className="text-[14px] font-medium text-foreground max-w-[500px]"
+                >
+                  {data?.description1 ?? 'Опис скоро з’явиться'}
+                </motion.p>
+              </AnimatePresence>
+            <div className="flex flex-col gap-[4px] mt-[24px] ">
+              {data?.metrics?.length > 0 ? (
+                data.metrics.map((m, i) => (
+                  <div
+                    key={m.k + i}
+                    className="flex justify-between border-b border-neutral/20 pb-[4px]"
+                  >
+                    <span className="text-foreground">{m.k}</span>
+                    <span className="text-foreground/60">{m.v}</span>
+                  </div>
+                ))
+              ) : (
+                <div className="text-foreground/50 text-[14px]">
+                </div>
+              )}
+            </div>
+
+            <div>
+              <CTAButton title="Отримати фінансові розрахунки" />
+            </div>
+          </div>
+                    <div className="overflow-hidden bg-gray-200">
             <img
-              src={data.subphoto}
-              alt={`${data.title} secondary`}
+              src={data?.subphoto ?? '/placeholder.jpg'}
+              alt={`${data?.title ?? ''} secondary`}
               className="w-full h-[200px] sm:h-[250px] md:h-[300px] object-cover"
             />
           </div>
 
-          <div className="rounded-2xl bg-foreground/10 p-[20px] shadow-md flex flex-col justify-between">
-            <h3 className="text-[24px] sm:text-[28px] md:text-[32px] font-semibold text-accent mb-[10px]">
-              {data.title}
-            </h3>
-            <div className="flex flex-col gap-[8px]">
-              {data.metrics?.map((m, i) => (
-                <div
-                  key={m.k + i}
-                  className="flex justify-between text-[16px] sm:text-[18px] md:text-[20px] border-b border-neutral/20 pb-[4px]"
-                >
-                  <span className="text-foreground">{m.k}</span>
-                  <span className="text-foreground/60">{m.v}</span>
-                </div>
-              ))}
-            </div>
-            <div className="mt-[16px]">
-              <CTAButton title="Отримати фінансові розрахунки" />
-            </div>
-          </div>
         </div>
       </div>
     </section>
