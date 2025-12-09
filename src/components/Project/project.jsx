@@ -1,6 +1,5 @@
 import CTAButton from "../common/CTAButton/ctaButton"
 import Video from "next-video"
-import heroBG from "/videos/DOM_3_2_short.mp4"
 
 export default function Project() {
   return (
@@ -24,7 +23,7 @@ export default function Project() {
       >
         <div className="relative w-full pb-[100px] overflow-hidden">
           <Video
-            src={heroBG}
+            src="/videos/DOM_3_2_short.mp4"
             autoplay
             muted
             loop
