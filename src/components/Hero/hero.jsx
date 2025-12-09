@@ -2,6 +2,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { motion, useScroll, useTransform } from 'motion/react'
 import Video from 'next-video'
+import heroBG from '/videos/DOM3_2.mp4'
 import CTAButton from '../common/CTAButton/ctaButton'
 
 export default function Hero({ isLoading }) {
@@ -58,7 +59,7 @@ export default function Hero({ isLoading }) {
       {/* ФОН-ВІДЕО */}
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
         <Video
-          src="/videos/DOM3_2.mp4"
+          src={heroBG}
           autoplay
           muted
           loop
