@@ -104,7 +104,7 @@ export default function Footer() {
                   </p>
                 </div>
 
-                <div className="mt-6 opacity-80 text-sm md:text-base">
+                <div className="mt-12 opacity-80 text-sm md:text-base">
                   <span className="block">вул. Кільцева, 7, Проліски</span>
                   <span className="block mt-1">hello@welcomedominvest.com</span>
 
@@ -140,7 +140,7 @@ export default function Footer() {
               </div>
 
               {/* RIGHT */}
-              <div className="md:w-1/3 w-full flex flex-col justify-between border-b border-neutral/10 pb-6 md:pb-0">
+              <div className="md:w-1/3 w-full flex flex-col justify-between border-b border-neutral/10 pb-6 md:pb-4">
                 <div>
                   <span className="text-base md:text-[20px] font-medium">Готові інвестувати?</span>
                   <p className="opacity-80 mt-4 text-sm md:text-base">
@@ -152,7 +152,7 @@ export default function Footer() {
                   </div>
                 </div>
 
-                <div className="flex flex-col md:flex-row justify-between text-[10px] md:text-[12px] tracking-tighter opacity-80 mt-6 md:mt-0">
+                <div className="flex flex-col md:flex-row justify-between text-[10px] md:text-[12px] tracking-tighter opacity-80 mt-6 md:mt-12">
                   <span>©2025 Dom Invest. All rights reserved</span>
                   <a className="mt-2 md:mt-0" href="https://welcomedom.rest/wp-content/uploads/2025/05/...">
                     Публічна оферта
