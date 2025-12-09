@@ -9,21 +9,20 @@
     "lint": "eslint"
   },
   "dependencies": {
-  "@emailjs/browser": "^4.4.1",
-  "locomotive-scroll": "^5.0.0-beta.21",
-  "lucide-react": "^0.542.0",
-  "motion": "^12.23.12",
-  "next": "15.2.4",
-  "next-video": "2.2.3",
-  "react": "19.1.0",
-  "react-dom": "19.1.0"
-},
-"devDependencies": {
-  "@eslint/eslintrc": "^3",
-  "@tailwindcss/postcss": "^4",
-  "eslint": "^9",
-  "eslint-config-next": "15.2.4",
-  "tailwindcss": "^4"
-}
-
+    "@emailjs/browser": "^4.4.1",
+    "locomotive-scroll": "^5.0.0-beta.21",
+    "lucide-react": "^0.542.0",
+    "motion": "^12.23.12",
+    "next": "^16.0.8",
+    "next-video": "2.2.3",
+    "react": "19.1.0",
+    "react-dom": "19.1.0"
+  },
+  "devDependencies": {
+    "@eslint/eslintrc": "^3",
+    "@tailwindcss/postcss": "^4",
+    "eslint": "^9",
+    "eslint-config-next": "15.2.4",
+    "tailwindcss": "^4"
   }
+}
