@@ -98,7 +98,7 @@ export default function Footer() {
                   <p className="text-base md:text-[20px] leading-tight">
                     <span className="text-[18px] md:text-[20px]">DOM INVEST – </span>
                     <span className="hidden md:inline">
-                      сучасний і амбітний оператором у сфері управління готельними об'єктами
+                      сучасний і амбітний оператор у сфері управління готельними об'єктами
                     </span>
                     <span className="md:hidden">сучасний оператор готельних послуг</span>
                   </p>
@@ -106,7 +106,7 @@ export default function Footer() {
 
                 <div className="mt-12 opacity-80 text-sm md:text-base">
                   <span className="block">вул. Кільцева, 7, Проліски</span>
-                  <span className="block mt-1">hello@welcomedominvest.com</span>
+                  <span className="block mt-1">welcomedominvest@gmail.com</span>
 
                   <div className="flex gap-4 mt-4">
                     <a href="https://www.facebook.com/welcome.dom.rest">
@@ -154,7 +154,7 @@ export default function Footer() {
 
                 <div className="flex flex-col md:flex-row justify-between text-[10px] md:text-[12px] tracking-tighter opacity-80 mt-6 md:mt-12">
                   <span>©2025 Dom Invest. All rights reserved</span>
-                  <a className="mt-2 md:mt-0" href="https://welcomedom.rest/wp-content/uploads/2025/05/...">
+                  <a className="mt-2 md:mt-0" href="https://welcomedom.rest/wp-content/uploads/2025/05/Публічна_оферта_договір_про_надання_послуг_з_тимчасового_розміщення.pdf">
                     Публічна оферта
                   </a>
                 </div>

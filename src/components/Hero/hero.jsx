@@ -1,9 +1,8 @@
 'use client'
 import { useEffect, useRef, useState } from 'react'
 import { motion, useScroll, useTransform } from 'motion/react'
-import Video from 'next-video'
-import heroBG from "../../../videos/DOM3_2.mp4"
 import CTAButton from '../common/CTAButton/ctaButton'
+import MuxPlayer from "@mux/mux-player-react"
 
 export default function Hero({ isLoading }) {
   const heroRef = useRef()
@@ -58,15 +57,20 @@ export default function Hero({ isLoading }) {
     >
       {/* ФОН-ВІДЕО */}
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
-        <Video
-          src={heroBG}
-          autoplay
-          muted
-          loop
-          playsInline
-          controls={false}
-          onLoadedMetadata={handleMeta}
-          className="
+            <MuxPlayer
+      playbackId="TFvcR5p01rO02oV02mR1oUT2Oj6r5O2HCpXqID02zPqZErg"
+      accentColor="#ea580c"
+      streamType="on-demand"
+  autoPlay
+  muted
+  loop
+  playsInline
+  controls={false}
+      metadata={{
+        videoTitle: "DOM HOTEL Hero Video",
+        ViewerUserId: "user-id-007"
+      }}
+                className="
             absolute left-1/2 top-1/2
             -translate-x-1/2 -translate-y-1/2
             will-change-transform
@@ -76,7 +80,7 @@ export default function Hero({ isLoading }) {
             height: `${baseH}px`,
             transform: `scale(${scale})`
           }}
-        />
+    />
       </div>
 
       <div className="absolute inset-0 bg-black/40 z-[1]" />

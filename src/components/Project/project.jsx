@@ -1,6 +1,5 @@
 import CTAButton from "../common/CTAButton/ctaButton"
-import Video from "next-video"
-import heroBG from "../../../videos/DOM_3_2_short.mp4"
+import MuxPlayer from "@mux/mux-player-react"
 
 export default function Project() {
   return (
@@ -23,15 +22,20 @@ export default function Project() {
         className="w-full overflow-hidden"
       >
         <div className="relative w-full pb-[100px] overflow-hidden">
-          <Video
-            src={heroBG}
-            autoplay
-            muted
-            loop
-            playsInline
-            controls={false}
-            className="absolute inset-0 w-full h-full object-cover"
-          />
+<MuxPlayer
+  playbackId="28bAe02z00Jn1KNQjIajoizt00xJCcHRDMQpQheo1MJuLs"
+  streamType="on-demand"
+  autoPlay
+  muted
+  loop
+  playsInline
+  controls={false}
+  accentColor="#ea580c"
+  metadata={{
+    videoTitle: "DOM HOTEL Hero Short Video",
+    viewerUserId: "user-id-007"
+  }}
+/>
         </div>
       </div>
     </section>

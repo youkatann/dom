@@ -1,17 +1,17 @@
 'use client'
 
-import { useState, useMemo } from 'react'
+import { useState, useMemo, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import CTAButton from '../common/CTAButton/ctaButton'
 
 const TABS = [
   { key: 'restaurant', label: 'Ресторан' },
-  { key: 'bass',        label: '3 басейни' },
-  { key: 'kidsclub',      label: 'Kids club' },
-  { key: 'ropepark',       label: 'Мотузковий парк' },
-  { key: 'fireplace',       label: 'Fireplace' },
-  { key: 'events',     label: 'Локації для івентів' },
-  { key: 'banya',     label: 'Банний комплекс' },
+  { key: 'bass', label: '3 басейни' },
+  { key: 'kidsclub', label: 'Kids club' },
+  { key: 'ropepark', label: 'Мотузковий парк' },
+  { key: 'fireplace', label: 'Fireplace' },
+  { key: 'events', label: 'Локації для івентів' },
+  { key: 'banya', label: 'Банний комплекс' },
 ]
 
 const CONTENT = {
@@ -20,8 +20,7 @@ const CONTENT = {
     description1: 'Затишний ресторан зі смачною кухнею та панорамним видом на природу. Меню включає європейські та локальні страви.',
     countLabel: 'столів',
     countValue: 24,
-    metrics: [
-    ],
+    metrics: [],
     hero: 'restaurant-1.jpg',
     subphoto: 'restaurant-2.jpg',
   },
@@ -69,7 +68,7 @@ const CONTENT = {
       { k: '', v: '' },
     ],
     hero: 'fireplace.png',
-    subphoto: 'fireplace.png',
+    subphoto: 'fireplace-2.png',
   },
   events: {
     title: 'Локації для івентів',
@@ -83,16 +82,16 @@ const CONTENT = {
     subphoto: 'event-2.jpg',
   },
   banya: {
-    title: 'Банний комплекс',
-    description1: 'Місце сили, відновлення та відпочинку. Відчуй, як сповільнюється час, коли SPA-простір DOM належить тільки тобі',
+    title: 'SPA-простір',
+    description1: 'Фінська сауна та аромотерапія в хамамі дарують спокій і розслаблення. Джакузі та чан просто неба розчиняють втому. Велика зона з каміном гріє погляди й розмови',
     countLabel: 'Парні',
     countValue: 3,
     metrics: [
       { k: 'Типи', v: 'фінська сауна, хамам' },
       { k: 'Безкоштовне відвідування', v: 'до 6-ти років' },
     ],
-    hero: 'banya.png',
-    subphoto: 'banya.png',
+    hero: 'banya-1.jpg',
+    subphoto: 'banya-2.jpg',
   },
 }
 
@@ -102,11 +101,22 @@ const fadeSlide = {
   exit: { opacity: 0, y: -8, transition: { duration: 0.2 } },
 }
 
+function usePreloadImage(src) {
+  const [loaded, setLoaded] = useState(false)
+  useEffect(() => {
+    setLoaded(false)
+    if (!src) return
+    const img = new Image()
+    img.src = src
+    img.onload = () => setLoaded(true)
+  }, [src])
+  return loaded
+}
+
 export default function Infrastructure() {
   const [active, setActive] = useState('restaurant')
-
-  // без fallback тут — бо ми хочемо варіант 2: fallback у JSX
   const data = useMemo(() => CONTENT[active], [active])
+  const heroLoaded = usePreloadImage(data?.hero ?? '/placeholder.jpg')
 
   const onKey = (e, key) => {
     if (e.key === 'Enter' || e.key === ' ') {
@@ -120,12 +130,11 @@ export default function Infrastructure() {
       id="Infrastructure"
       className="mt-[100px] xl:mt-[150px] px-[16px] sm:px-[24px] md:px-[40px] py-[40px] flex flex-col gap-[32px] bg-neutral"
     >
-      {/* Заголовок */}
-      <div className="flex flex-col xl:flex-row xl:items-center xl:justify-between gap-[20px]">
+      <div className="flex flex-col xl:flex-row xl:items-start xl:justify-between gap-[20px]">
         <h2 className="text-[36px] sm:text-[48px] md:text-[60px] lg:text-[64px] xl:text-[76px] tracking-tighter text-accent font-bold uppercase">
           Інфраструктура
         </h2>
-        {/* Tabs */}
+
         <div className="hidden xl:flex flex-wrap gap-[10px] justify-end">
           {TABS.map((t) => {
             const activeTab = t.key === active
@@ -150,7 +159,6 @@ export default function Infrastructure() {
           })}
         </div>
 
-        {/* Select */}
         <div className="xl:hidden relative w-full md:w-[300px]">
           <select
             value={active}
@@ -178,39 +186,44 @@ export default function Infrastructure() {
           </svg>
         </div>
       </div>
-<hr className="w-full border-foreground/10 h-[0.5px]" />
-      {/* Контент */}
-      <div className="flex flex-col lg:flex-row gap-[20px] w-full">
-        {/* Основне фото */}
-        <div className="w-full lg:w-[60%] relative overflow-hidden">
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={active}
-              className="absolute inset-0"
-              initial={{ opacity: 0, scale: 1.02 }}
-              animate={{ opacity: 1, scale: 1, transition: { duration: 0.35 } }}
-              exit={{
-                opacity: 0,
-                scale: 0.995,
-                transition: { duration: 0.2 },
-              }}
-            >
-              <img
-                src={data?.hero ?? '/placeholder.jpg'}
-                alt={data?.title ?? ''}
-                className="w-full h-full object-cover"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
-            </motion.div>
-          </AnimatePresence>
+
+      <hr className="w-full border-foreground/10 h-[0.5px]" />
+
+      {/* Основний контейнер колонок */}
+      <div className="flex flex-col lg:flex-row gap-[20px] w-full items-stretch">
+        {/* Ліва колонка */}
+        <div className="w-full lg:w-[60%] relative flex">
+          <div className="w-full relative flex-1 h-full">
+            <AnimatePresence mode="wait">
+              {heroLoaded && (
+                <motion.div
+                  key={active}
+                  className="absolute inset-0"
+                  initial={{ opacity: 0, scale: 1.02 }}
+                  animate={{ opacity: 1, scale: 1, transition: { duration: 0.35 } }}
+                  exit={{ opacity: 0, scale: 0.995, transition: { duration: 0.2 } }}
+                >
+                  <img
+                    src={data.hero}
+                    alt={data.title}
+                    className="w-full h-full object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
+                </motion.div>
+              )}
+            </AnimatePresence>
+            {!heroLoaded && <div className="absolute inset-0 animate-pulse bg-gray-400" />}
+          </div>
         </div>
 
-        {/* Правий блок */}
+        {/* Права колонка */}
         <div className="w-full lg:w-[40%] flex flex-col gap-[20px]">
-          <div className="bg-[rgb(149_149_149_/_0.1)] p-[20px] flex flex-col justify-between">
-            <h3 className="text-[30px] font-semibold text-accent mb-[10px] uppercase tracking-tighter">
-              {data?.title ?? '—'}
-            </h3>
+          <div className="flex flex-col">
+            <div className="bg-[rgb(149_149_149_/_0.1)] p-[20px] flex flex-col justify-between">
+              <h3 className="text-[30px] font-semibold text-accent mb-[10px] uppercase tracking-tighter">
+                {data?.title ?? '—'}
+              </h3>
+
               <AnimatePresence mode="wait">
                 <motion.p
                   key={`desc-${active}`}
@@ -220,35 +233,44 @@ export default function Infrastructure() {
                   {data?.description1 ?? 'Опис скоро з’явиться'}
                 </motion.p>
               </AnimatePresence>
-            <div className="flex flex-col gap-[4px] mt-[24px] ">
-              {data?.metrics?.length > 0 ? (
-                data.metrics.map((m, i) => (
-                  <div
-                    key={m.k + i}
-                    className="flex justify-between border-b border-neutral/20 pb-[4px]"
-                  >
-                    <span className="text-foreground">{m.k}</span>
-                    <span className="text-foreground/60">{m.v}</span>
-                  </div>
-                ))
-              ) : (
-                <div className="text-foreground/50 text-[14px]">
-                </div>
-              )}
+
+              <div className="flex flex-col gap-[4px] mt-[24px] ">
+                {data?.metrics?.length > 0 ? (
+                  data.metrics.map((m, i) => (
+                    <div
+                      key={m.k + i}
+                      className="flex justify-between border-b border-neutral/20 pb-[4px]"
+                    >
+                      <span className="text-foreground">{m.k}</span>
+                      <span className="text-foreground/60">{m.v}</span>
+                    </div>
+                  ))
+                ) : (
+                  <div className="text-foreground/50 text-[14px]"></div>
+                )}
+              </div>
+
+              <div>
+                <CTAButton title="Отримати фінансові розрахунки" />
+              </div>
             </div>
 
-            <div>
-              <CTAButton title="Отримати фінансові розрахунки" />
+            {/* Підфото */}
+            <div className="overflow-hidden h-[200px] sm:h-[250px] md:h-[300px] mt-[20px] relative">
+              <AnimatePresence mode="wait">
+                <motion.img
+                  key={active}
+                  src={data?.subphoto ?? '/placeholder.jpg'}
+                  alt={`${data?.title ?? ''} secondary`}
+                  className="w-full h-full object-cover absolute inset-0"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1, transition: { duration: 0.35 } }}
+                  exit={{ opacity: 0, transition: { duration: 0.2 } }}
+                  loading="lazy"
+                />
+              </AnimatePresence>
             </div>
           </div>
-                    <div className="overflow-hidden bg-gray-200">
-            <img
-              src={data?.subphoto ?? '/placeholder.jpg'}
-              alt={`${data?.title ?? ''} secondary`}
-              className="w-full h-[200px] sm:h-[250px] md:h-[300px] object-cover"
-            />
-          </div>
-
         </div>
       </div>
     </section>
