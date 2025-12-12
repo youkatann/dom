@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, memo } from 'react'
 import { motion } from 'framer-motion'
 import CTAButton from '../common/CTAButton/ctaButton'
 
@@ -9,6 +9,26 @@ const STATS = [
   { id: 2, value: '8–13%', text: 'Очікувана рентабельність' },
   { id: 3, value: '7–12 років', text: 'Окупність' },
 ]
+
+// Мемоізована картка, щоб уникнути перерендеру при зміні state інших карток
+const StatCard = memo(({ card, isActive, onHoverStart, onHoverEnd }) => (
+  <motion.div
+    onMouseEnter={onHoverStart}
+    onMouseLeave={onHoverEnd}
+    className={`flex flex-col justify-between p-[20px] sm:p-[24px] min-h-[160px] sm:min-h-[200px] md:min-h-[220px]
+      transition-colors duration-300
+      ${isActive ? 'bg-accent text-neutral' : 'bg-[rgb(149_149_149_/_0.1)] text-accent'}`}
+    animate={{ scale: isActive ? 1.03 : 1 }}
+    transition={{ type: 'spring', stiffness: 260, damping: 26 }}
+  >
+    <span className="text-[32px] sm:text-[40px] md:text-[48px] font-bold tracking-tighter leading-[1]">
+      {card.value}
+    </span>
+    <p className="text-[18px] sm:text-[18px] uppercase text-black tracking-tighter leading-[1.2]">
+      {card.text}
+    </p>
+  </motion.div>
+))
 
 export default function Stats() {
   const [active, setActive] = useState(null)
@@ -23,34 +43,18 @@ export default function Stats() {
         ФІНАНСОВИЙ ПОТЕНЦІАЛ
       </h2>
       <hr className="w-full border-foreground/10 h-[0.5px]" />
+
       {/* Картки */}
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-[16px] sm:gap-[20px]">
-        {STATS.map((card, i) => {
-          const isActive = i === active
-          return (
-            <motion.div
-              key={card.id}
-              onMouseEnter={() => setActive(i)}
-              onMouseLeave={() => setActive(null)}
-              className={[
-                'flex flex-col justify-between p-[20px] sm:p-[24px] min-h-[160px] sm:min-h-[200px] md:min-h-[220px]',
-                'transition-colors duration-300',
-                isActive
-                  ? 'bg-accent text-neutral'
-                  : 'bg-[rgb(149_149_149_/_0.1)] text-accent',
-              ].join(' ')}
-              animate={{ scale: isActive ? 1.03 : 1 }}
-              transition={{ type: 'spring', stiffness: 260, damping: 26 }}
-            >
-              <span className="text-[32px] sm:text-[40px] md:text-[48px] font-bold tracking-tighter leading-[1]">
-                {card.value}
-              </span>
-              <p className="text-[18px] sm:text-[18px] uppercase text-black tracking-tighter leading-[1.2]">
-                {card.text}
-              </p>
-            </motion.div>
-          )
-        })}
+        {STATS.map((card, i) => (
+          <StatCard
+            key={card.id}
+            card={card}
+            isActive={i === active}
+            onHoverStart={() => setActive(i)}
+            onHoverEnd={() => setActive(null)}
+          />
+        ))}
       </div>
 
       {/* Нижній блок */}

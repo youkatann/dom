@@ -1,11 +1,13 @@
 'use client'
-import { useEffect, useRef, useState } from 'react'
+
+import { useEffect, useRef, useState, useCallback } from 'react'
 import { motion, useScroll, useTransform } from 'motion/react'
 import CTAButton from '../common/CTAButton/ctaButton'
-import MuxPlayer from "@mux/mux-player-react"
+import MuxPlayer from '@mux/mux-player-react'
 
 export default function Hero({ isLoading }) {
-  const heroRef = useRef()
+  const heroRef = useRef(null)
+  const rafRef = useRef(null)
 
   const { scrollYProgress } = useScroll({
     target: heroRef,
@@ -15,31 +17,43 @@ export default function Hero({ isLoading }) {
   const heroScale = useTransform(scrollYProgress, [0.2, 1], [1, 0.97])
   const heroRadius = useTransform(scrollYProgress, [0, 1], [0, 36])
 
-  const [nat, setNat] = useState(null)
+  const [naturalSize, setNaturalSize] = useState({ w: 1920, h: 1080 })
   const [scale, setScale] = useState(1)
 
-  const recalc = (w, h) => {
+  const recalc = useCallback((w, h) => {
     const vw = window.innerWidth
     const vh = window.innerHeight
     setScale(Math.max(vw / w, vh / h))
-  }
+  }, [])
 
-  const handleMeta = (e) => {
+  const handleMeta = useCallback((e) => {
     const v = e.currentTarget
-    const dims = { w: v.videoWidth || 1920, h: v.videoHeight || 1080 }
-    setNat(dims)
+    const dims = {
+      w: v.videoWidth || 1920,
+      h: v.videoHeight || 1080
+    }
+    setNaturalSize(dims)
     recalc(dims.w, dims.h)
-  }
+  }, [recalc])
 
   useEffect(() => {
-    if (!nat) return
-    const onResize = () => recalc(nat.w, nat.h)
-    window.addEventListener('resize', onResize)
-    return () => window.removeEventListener('resize', onResize)
-  }, [nat])
+    if (!naturalSize) return
 
-  const baseW = nat?.w || 1920
-  const baseH = nat?.h || 1080
+    const onResize = () => {
+      cancelAnimationFrame(rafRef.current)
+      rafRef.current = requestAnimationFrame(() => {
+        recalc(naturalSize.w, naturalSize.h)
+      })
+    }
+
+    window.addEventListener('resize', onResize)
+    return () => {
+      window.removeEventListener('resize', onResize)
+      cancelAnimationFrame(rafRef.current)
+    }
+  }, [naturalSize, recalc])
+
+  const { w: baseW, h: baseH } = naturalSize
 
   return (
     <motion.section
@@ -50,27 +64,21 @@ export default function Hero({ isLoading }) {
         lg:grid lg:grid-cols-4 lg:grid-rows-4 lg:gap-[16px]
         lg:pt-[16px] lg:flex-none
       "
-      style={{
-        scale: heroScale,
-        borderRadius: heroRadius
-      }}
+      style={{ scale: heroScale, borderRadius: heroRadius }}
     >
-      {/* ФОН-ВІДЕО */}
+      {/* BG VIDEO */}
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
-            <MuxPlayer
-      playbackId="TFvcR5p01rO02oV02mR1oUT2Oj6r5O2HCpXqID02zPqZErg"
-      accentColor="#ea580c"
-      streamType="on-demand"
-  autoPlay
-  muted
-  loop
-  playsInline
-  controls={false}
-      metadata={{
-        videoTitle: "DOM HOTEL Hero Video",
-        ViewerUserId: "user-id-007"
-      }}
-                className="
+        <MuxPlayer
+          playbackId="TFvcR5p01rO02oV02mR1oUT2Oj6r5O2HCpXqID02zPqZErg"
+          accentColor="#ea580c"
+          streamType="on-demand"
+          autoPlay
+          muted
+          loop
+          playsInline
+          controls={false}
+          onLoadedMetadata={handleMeta}
+          className="
             absolute left-1/2 top-1/2
             -translate-x-1/2 -translate-y-1/2
             will-change-transform
@@ -80,12 +88,16 @@ export default function Hero({ isLoading }) {
             height: `${baseH}px`,
             transform: `scale(${scale})`
           }}
-    />
+          metadata={{
+            videoTitle: 'DOM HOTEL Hero Video',
+            ViewerUserId: 'user-id-007'
+          }}
+        />
       </div>
 
       <div className="absolute inset-0 bg-black/40 z-[1]" />
 
-      {/* ЗАГОЛОВОК */}
+      {/* TITLE */}
       <h1
         className="
           z-[2] text-neutral uppercase tracking-tighter leading-[0.9] text-center
@@ -99,7 +111,7 @@ export default function Hero({ isLoading }) {
         </span>
       </h1>
 
-      {/* ПІДЗАГОЛОВОК */}
+      {/* SUBTITLE */}
       <p
         className="
           z-[2] text-neutral uppercase tracking-tight leading-[1.2]
@@ -113,7 +125,7 @@ export default function Hero({ isLoading }) {
         Надійний актив для інвестора, що працює вже сьогодні
       </p>
 
-      {/* СПИСОК */}
+      {/* LIST */}
       <ul
         className="
           z-[2] text-neutral opacity-80 tracking-tight leading-[1.2]
@@ -130,7 +142,7 @@ export default function Hero({ isLoading }) {
         <li>Repeat-rate більше 90%</li>
       </ul>
 
-      {/* КНОПКА */}
+      {/* CTA */}
       <div
         className="
           z-[2] flex justify-center mt-2

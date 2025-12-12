@@ -1,29 +1,22 @@
 'use client'
-import { useState } from "react"
+
 import { motion } from "framer-motion"
 import CTAButton from "../common/CTAButton/ctaButton"
 
-const PARTNERS = [
-  {
-    id: 1,
-    name: "SP8",
-    logo: "/sp8.png",
-    description:
-      "sp8 — це українське виробництво меблів. Компанія створює ексклюзивні меблі та предмети інтер’єру для житлових просторів, офісів і HoReCa, поєднуючи дизайн, майстерність і точність. За сім років роботи команда з 25 фахівців реалізувала понад 180 проєктів і виготовила більше 1200 одиниць меблів на замовлення. У портфоліо sp8 — столи, дивани, крісла, пуфи, стінові панелі, дзеркала, скляні вироби, двері, сходи та вітражі.",
-  }
-]
+const PARTNER = {
+  id: 1,
+  name: "SP8",
+  logo: "/sp8.png",
+  description:
+    "sp8 — це українське виробництво меблів. Компанія створює ексклюзивні меблі та предмети інтер’єру для житлових просторів, офісів і HoReCa, поєднуючи дизайн, майстерність і точність. За сім років роботи команда з 25 фахівців реалізувала понад 180 проєктів і виготовила більше 1200 одиниць меблів на замовлення. У портфоліо sp8 — столи, дивани, крісла, пуфи, стінові панелі, дзеркала, скляні вироби, двері, сходи та вітражі.",
+}
 
 export default function Trust() {
-  const activePartner = PARTNERS[0] // Інформація завжди показана, без кліків
-
   return (
     <section
       id="Trust"
       className="mb-[100px] sm:mb-[150px] px-[16px] sm:px-[24px] md:px-[40px] py-[40px] sm:py-[60px] bg-neutral flex flex-col gap-[40px] sm:gap-[60px] relative"
     >
-      {/* Верхній рядок */}
-      <div className="flex justify-end"></div>
-
       {/* Заголовок + лого + опис */}
       <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-[20px] lg:gap-[40px] text-center lg:text-left">
         <span className="text-[36px] sm:text-[48px] md:text-[60px] lg:text-[72px] tracking-tighter leading-[0.9] font-bold text-accent block">
@@ -47,7 +40,6 @@ export default function Trust() {
         </span>
       </div>
 
-      {/* Лінія */}
       <hr className="w-full border-foreground/10 h-[0.5px]" />
 
       {/* Статистика */}
@@ -72,23 +64,22 @@ export default function Trust() {
           Партнери
         </h2>
 
-        {/* СТАЦІОНАРНИЙ ІНФОБЛОК */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4 }}
-          className="p-[24px] sm:p-[40px] max-w-[800px] mt-[20px] bg-[rgb(149_149_149_/_0.1)]"
+          className="p-[24px] sm:p-[40px] max-w-[800px] mt-[20px] bg-[rgb(149_149_149_/_0.1)] mx-auto lg:mx-0"
         >
           <img
-            src={activePartner.logo}
-            alt={activePartner.name}
+            src={PARTNER.logo}
+            alt={PARTNER.name}
             className="w-[80px] sm:w-[100px] md:w-[120px] mx-auto mb-[20px]"
           />
-          <h3 className="text-[24px] sm:text-[28px] md:text-[32px] font-bold mb-[20px] text-accent">
-            {activePartner.name}
+          <h3 className="text-[24px] sm:text-[28px] md:text-[32px] font-bold mb-[20px] text-accent text-center lg:text-left">
+            {PARTNER.name}
           </h3>
-          <p className="text-[15px] sm:text-[16px] md:text-[18px] text-foreground/70 leading-[1.5]">
-            {activePartner.description}
+          <p className="text-[15px] sm:text-[16px] md:text-[18px] text-foreground/70 leading-[1.5] text-center lg:text-left">
+            {PARTNER.description}
           </p>
         </motion.div>
       </div>

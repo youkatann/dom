@@ -1,6 +1,10 @@
 'use client'
-import { motion } from 'framer-motion'
-import { useState, useId } from "react"
+
+import { memo, useMemo } from "react"
+import { motion } from "framer-motion"
+import Image from "next/image"
+
+/* -------------------- STATIC DATA -------------------- */
 
 const REVIEWS = [
   {
@@ -35,82 +39,82 @@ const REVIEWS = [
   }
 ]
 
-function LiquidCard({ item, i }) {
-  const [isHovered, setIsHovered] = useState(false)
+/* -------------------- ANIMATION VARIANTS -------------------- */
 
+const cardVariants = {
+  rest: {
+    backgroundColor: "#FFEBD8",
+    color: "#000000",
+    transition: { duration: 0.55, ease: "easeInOut" }
+  },
+  hover: {
+    backgroundColor: "#FF3E00",
+    color: "#FFEBD8",
+    transition: { duration: 0.55, ease: "easeInOut" }
+  }
+}
+
+const linkVariants = {
+  rest: { color: "#FF3E00", transition: { duration: 0.55, ease: "easeInOut" } },
+  hover: { color: "#FFEBD8", transition: { duration: 0.55, ease: "easeInOut" } }
+}
+
+/* -------------------- CARD COMPONENT -------------------- */
+
+const LiquidCard = memo(function LiquidCard({ item }) {
   return (
     <motion.div
-      key={i}
       className="relative p-[20px] flex flex-col gap-[16px] border-[0.5px] border-foreground/10 min-h-[450px] overflow-hidden isolate cursor-pointer"
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-      initial={false}
-      animate={{
-        backgroundColor: isHovered ? "#FF3E00" : "#FFEBD8",
-        color: isHovered ? "#FFEBD8" : "#000000",
-      }}
-      transition={{ duration: 0.6, ease: "easeInOut" }}
+      variants={cardVariants}
+      initial="rest"
+      animate="rest"
+      whileHover="hover"
     >
-      {/* Контент */}
+      {/* Header */}
       <div className="flex items-center gap-[12px] relative z-10">
         <div className="w-[52px] h-[52px] rounded-full border-[1px] border-accent overflow-hidden flex-shrink-0">
-          <img
+          <Image
             src={item.avatar}
             alt={item.name}
-            className="w-full h-full object-cover"
+            width={52}
+            height={52}
+            className="object-cover"
+            loading="lazy"
           />
         </div>
 
-        <p className="font-semibold text-[18px]" style={{ color: "inherit" }}>
+        <p className="font-semibold text-[18px]">
           {item.name}
         </p>
       </div>
 
-      <p
-        className="leading-[1.4] text-[15px] relative z-10"
-        style={{ color: "inherit" }}
-      >
+      {/* Text */}
+      <p className="leading-[1.4] text-[15px] relative z-10">
         {item.text}
       </p>
 
+      {/* Instagram Link */}
       <motion.a
         href={item.instagram}
         target="_blank"
         rel="noopener noreferrer"
         className="font-medium hover:underline mt-auto relative z-10"
-        initial={false}
-        animate={{
-          color: isHovered ? "#FFEBD8" : "#FF3E00",
-        }}
-        transition={{ duration: 0.6, ease: "easeInOut" }}
+        variants={linkVariants}
       >
         Перейти в Instagram →
       </motion.a>
     </motion.div>
   )
-}
+})
 
-
-
-/* хвильові path-и ті самі, що у футері */
-const WAVE_REST = `
-  M 0 1.05
-  C 0.25 1.0, 0.75 1.1, 1 1.05
-  L 1 1.2
-  L 0 1.2
-  Z
-`
-
-const WAVE_HOVER = `
-  M 0 0.05
-  C 0.25 0.0, 0.75 0.1, 1 0.05
-  L 1 1.2
-  L 0 1.2
-  Z
-`
-
+/* -------------------- PAGE COMPONENT -------------------- */
 
 export default function About() {
+  const cards = useMemo(
+    () => REVIEWS.map((item, i) => <LiquidCard key={i} item={item} />),
+    []
+  )
+
   return (
     <section
       id="Reviews"
@@ -123,26 +127,30 @@ export default function About() {
       >
         Відгуки гостей DOM
       </h2>
+
       <hr className="w-full border-foreground/10 h-[0.5px]" />
+
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
-        {REVIEWS.map((item, i) => (
-          <LiquidCard key={i} item={item} i={i} />
-        ))}
+        {cards}
       </div>
 
       <div className="flex justify-center pt-[10px]">
-      <div
-        className="py-[0px] md:py-[12px] px-[0px] md:px-[16px] text-[12px] md:text-[16px] flex justify-center items-center font-bold uppercase relative group cursor-pointer leading-[1]"
-      >
-        <span className="flex items-center gap-2">
-          <span className="text-[24px] md:text-[36px] italic">(</span>{' '}
-          <a className="group-hover:text-accent transition"
-          href="https://drive.google.com/drive/folders/1zAqgCImgD3Pxr2g2p78TE07Hr4wzDhW0?usp=sharing"
-          target="_blank"
-          rel="noopener noreferrer">БІЛЬШЕ ВІДГУКІВ ТУТ</a>{' '}
-          <span className="text-[24px] md:text-[36px] italic">)</span>
-        </span>
-      </div>
+        <div
+          className="py-[0px] md:py-[12px] px-[0px] md:px-[16px] text-[12px] md:text-[16px] flex justify-center items-center font-bold uppercase relative group cursor-pointer leading-[1]"
+        >
+          <span className="flex items-center gap-2">
+            <span className="text-[24px] md:text-[36px] italic">(</span>{' '}
+            <a
+              className="group-hover:text-accent transition"
+              href="https://drive.google.com/drive/folders/1zAqgCImgD3Pxr2g2p78TE07Hr4wzDhW0?usp=sharing"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              БІЛЬШЕ ВІДГУКІВ ТУТ
+            </a>{' '}
+            <span className="text-[24px] md:text-[36px] italic">)</span>
+          </span>
+        </div>
       </div>
     </section>
   )
