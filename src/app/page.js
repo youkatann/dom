@@ -1,6 +1,6 @@
 'use client'
 import { useEffect, useState, useRef } from "react";
-import Hero from "@/components/Hero/hero";
+import Hero from "@/components/Hero/Hero";
 import Header from "@/components/Header/header";
 import Why from "@/components/Why/why";
 import MainButton from "@/components/common/Button/button";

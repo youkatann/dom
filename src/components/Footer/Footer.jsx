@@ -86,7 +86,7 @@ export default function Footer() {
       {/* Wrapper with extra height to allow full scrolling */}
       <div className="relative min-h-[120vh] md:min-h-[100vh]">
         <div className="sticky top-0 w-full bg-black">
-          <div className="flex flex-col justify-between pt-[120px] px-4 md:px-8 lg:px-16 min-h-screen">
+          <div className="flex flex-col justify-between pt-[120px] px-[16px] sm:px-[24px] md:px-[40px] min-h-screen">
             {/* Main grid: responsive columns */}
             <div className="w-full flex flex-col md:flex-row md:items-start md:justify-between gap-8">
               {/* LEFT */}

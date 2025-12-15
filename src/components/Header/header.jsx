@@ -114,7 +114,7 @@ function ImagePane({ src, isActive }) {
 /* ===== Footer Component ===== */
 function Footer() {
   return (
-    <div className="mt-10 flex flex-col gap-2 text-[12px] uppercase lg:flex-row lg:justify-between lg:items-end">
+    <div className="relative mt-10 z-[40] flex flex-col gap-2 text-[12px] uppercase lg:flex-row lg:justify-between lg:items-end">
       <ul className="list-none p-0">
         <motion.li
           custom={[0.3, 0]}
@@ -198,7 +198,7 @@ export default function Header() {
       initial={{ y: 0 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.4 }}
-      className="fixed top-0 left-0 w-full bg-neutral px-[16px] sm:px-[24px] md:px-[40px] sm:p-5 z-[10] border-b border-black"
+      className="fixed top-0 left-0 w-full bg-neutral px-[16px] sm:px-[24px] md:px-[40px] sm:p-5 z-[50] border-b border-black"
     >
       <div className="relative flex justify-between items-center text-[12px] font-normal uppercase sm:text-[15px]">
         <Link href="/" className="text-black no-underline">
@@ -206,7 +206,7 @@ export default function Header() {
         </Link>
         <div
           onClick={() => setIsActive(!isActive)}
-          className="el flex cursor-pointer items-center justify-center gap-2 p-4"
+          className="el flex cursor-pointer items-center justify-center gap-2 p-4 pr-0"
         >
           <div className="label relative flex items-center">
             <div className="pointer-events-none relative w-[22.5px]">
