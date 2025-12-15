@@ -14,8 +14,6 @@ import Footer from "@/components/Footer/Footer";
 
 export default function Home() {
 
-  const [isLoading, setIsLoading] = useState(true)
-
   useEffect( () => {
     (
       async () => {

@@ -92,6 +92,7 @@ export default function Hero({ isLoading }) {
             videoTitle: 'DOM HOTEL Hero Video',
             ViewerUserId: 'user-id-007'
           }}
+          poster="https://image.mux.com/TFvcR5p01rO02oV02mR1oUT2Oj6r5O2HCpXqID02zPqZErg/thumbnail.png?time=1&width=1280"
         />
       </div>
 

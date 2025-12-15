@@ -36,6 +36,7 @@ export default function Project() {
             viewerUserId: "user-id-007"
           }}
           className="absolute inset-0 h-full w-full object-cover"
+          poster="https://image.mux.com/28bAe02z00Jn1KNQjIajoizt00xJCcHRDMQpQheo1MJuLs/thumbnail.png?time=1&width=1280"
         />
       </div>
     </section>
