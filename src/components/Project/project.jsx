@@ -20,7 +20,7 @@ export default function Project() {
 
       <div className="relative w-full aspect-[16/9] overflow-hidden rounded-xl">
         <MuxPlayer
-          playbackId="28bAe02z00Jn1KNQjIajoizt00xJCcHRDMQpQheo1MJuLs"
+          playbackId="aMUtKzO7zyxB3s6CRIC00FCsAdWl56lhELGx3Rt00Lvi4"
           streamType="on-demand"
           autoPlay
           muted
@@ -36,7 +36,7 @@ export default function Project() {
             viewerUserId: "user-id-007"
           }}
           className="absolute inset-0 h-full w-full object-cover"
-          poster="https://image.mux.com/28bAe02z00Jn1KNQjIajoizt00xJCcHRDMQpQheo1MJuLs/thumbnail.png?time=1&width=1280"
+          poster="https://image.mux.com/aMUtKzO7zyxB3s6CRIC00FCsAdWl56lhELGx3Rt00Lvi4/thumbnail.png?time=1&width=1280"
         />
       </div>
     </section>

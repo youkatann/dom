@@ -12,7 +12,7 @@ const ROOMS = [
     id: 'r3',
     title: 'Suite with terrace',
     slug: 'suite-terrace',
-    images: ['025_DOM-HDR.jpg', '368_DOM-HDR.jpg', '380_DOM-HDR.jpg'],
+    images: ['025_DOM-HDR.jpg', '070_DOM-HDR.jpg', '052_DOM-HDR.jpg'],
     stats: [
       { label: 'Житлова площа', value: '43.8 м²' },
       { label: 'Місткість', value: '2-4 особи' },

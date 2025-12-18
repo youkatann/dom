@@ -69,7 +69,7 @@ export default function Hero({ isLoading }) {
       {/* BG VIDEO */}
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
         <MuxPlayer
-          playbackId="TFvcR5p01rO02oV02mR1oUT2Oj6r5O2HCpXqID02zPqZErg"
+          playbackId="IyiB89dWYMGGt2zvwVlQCG2FLDD5vvAr01SwwGzdGQ02s"
           accentColor="#ea580c"
           streamType="on-demand"
           autoPlay
@@ -92,7 +92,7 @@ export default function Hero({ isLoading }) {
             videoTitle: 'DOM HOTEL Hero Video',
             ViewerUserId: 'user-id-007'
           }}
-          poster="https://image.mux.com/TFvcR5p01rO02oV02mR1oUT2Oj6r5O2HCpXqID02zPqZErg/thumbnail.png?time=1&width=1280"
+          poster="https://image.mux.com/IyiB89dWYMGGt2zvwVlQCG2FLDD5vvAr01SwwGzdGQ02s/thumbnail.png?time=1&width=1280"
         />
       </div>
 
