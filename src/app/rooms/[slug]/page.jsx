@@ -14,7 +14,7 @@ const ROOMS = [
     plan: '/plans/vip-1.jpg',
     stats: [
       { label: 'Житлова площа', value: '43.8 м²' },
-      { label: 'Місткість', value: '2–4 особи' },
+      { label: 'Місткість', value: '2-4 особи' },
     ],
   },
   {
@@ -25,7 +25,18 @@ const ROOMS = [
     plan: '/plans/vip-2.jpg',
     stats: [
       { label: 'Житлова площа', value: '67,5 м²' },
-      { label: 'Місткість', value: '3–5 осіб' },
+      { label: 'Місткість', value: '3-5 осіб' },
+    ],
+  },
+  {
+    id: 'r5',
+    title: 'Premium cottage with large terrace',
+    slug: 'premium-cottage',
+    images: ['669_DOM-HDR.jpg', '690_DOM-HDR.jpg', '642_DOM-HDR.jpg'],
+    plan: '/plans/cottage.jpg',
+    stats: [
+      { label: 'Житлова площа', value: '62 м²' },
+      { label: 'Місткість', value: '2-4 осіб' },
     ],
   },
 ]
