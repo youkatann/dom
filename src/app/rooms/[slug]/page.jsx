@@ -65,39 +65,16 @@ export default function RoomPage() {
     <>
       <Header />
 
-      {/* MOBILE: auto height | DESKTOP: fullscreen */}
-      <section className="px-4 md:px-10 py-6 h-auto md:h-screen flex flex-col pt-24">
-        <h1 className="text-[28px] sm:text-[36px] md:text-[52px] text-accent font-bold uppercase mb-4 tracking-tight">
+      <section className="px-4 md:px-10 pt-24 pb-8 md:h-screen flex flex-col">
+        <h1 className="text-[28px] sm:text-[36px] md:text-[52px] text-accent font-bold uppercase mb-6">
           {room.title}
         </h1>
 
-        {/* MOBILE: scroll | DESKTOP: fixed */}
-        <div className="grid md:grid-cols-2 gap-6 flex-1 md:overflow-hidden">
-          {/* ================= LEFT: GALLERY ================= */}
-          <div className="flex flex-col md:flex-row gap-4 md:h-full">
-            <div className="flex md:flex-col gap-3 overflow-auto md:w-24">
-              {room.images.map((img, idx) => (
-                <button
-                  key={img}
-                  onClick={() => setActiveIndex(idx)}
-                  className={`relative shrink-0 w-20 h-20 rounded-xl overflow-hidden border transition
-                    ${
-                      activeIndex === idx
-                        ? 'border-black'
-                        : 'border-black/20 opacity-70 hover:opacity-100'
-                    }`}
-                >
-                  <Image
-                    src={`/${img}`}
-                    alt={`${room.title} preview ${idx + 1}`}
-                    fill
-                    className="object-cover"
-                  />
-                </button>
-              ))}
-            </div>
-
-            <div className="relative w-full md:flex-1 aspect-[4/3] md:aspect-auto rounded-2xl overflow-hidden shadow-lg">
+        <div className="grid md:grid-cols-2 gap-6 flex-1">
+          {/* ================= GALLERY ================= */}
+          <div className="flex flex-col gap-4">
+            {/* Main image */}
+            <div className="relative w-full aspect-[4/3] md:flex-1 rounded-2xl overflow-hidden shadow-lg">
               <Image
                 src={`/${room.images[activeIndex]}`}
                 alt={room.title}
@@ -106,10 +83,32 @@ export default function RoomPage() {
                 className="object-cover"
               />
             </div>
+
+            {/* Thumbnails */}
+            <div className="flex md:flex-col gap-3 md:overflow-y-auto flex-wrap md:w-24">
+              {room.images.map((img, idx) => (
+                <button
+                  key={img}
+                  onClick={() => setActiveIndex(idx)}
+                  className={`relative shrink-0 w-20 h-20 rounded-xl overflow-hidden border transition
+                    ${activeIndex === idx
+                      ? 'border-black'
+                      : 'border-black/20 opacity-70 hover:opacity-100'
+                    }`}
+                >
+                  <Image
+                    src={`/${img}`}
+                    alt={`${room.title} ${idx + 1}`}
+                    fill
+                    className="object-cover"
+                  />
+                </button>
+              ))}
+            </div>
           </div>
 
-          {/* ================= RIGHT: STATS + PLAN ================= */}
-          <div className="flex flex-col gap-6 md:h-full md:overflow-hidden">
+          {/* ================= INFO + PLAN ================= */}
+          <div className="flex flex-col gap-6">
             {/* Stats */}
             <div>
               <h2 className="text-lg md:text-xl font-semibold mb-3">
@@ -120,7 +119,7 @@ export default function RoomPage() {
                 {room.stats.map(stat => (
                   <div
                     key={stat.label}
-                    className="flex justify-between text-[14px] md:text-[15px] border-b border-black/10 pb-1"
+                    className="flex justify-between text-sm border-b border-black/10 pb-1"
                   >
                     <span className="font-medium">{stat.label}</span>
                     <span className="opacity-80">{stat.value}</span>
@@ -129,21 +128,14 @@ export default function RoomPage() {
               </div>
             </div>
 
-            {/* ================= PLAN (FIXED FOR DESKTOP) ================= */}
+            {/* Plan */}
             {room.plan && (
-              <div className="flex flex-col gap-3 md:flex-1 md:min-h-0">
+              <div className="flex flex-col gap-3 md:flex-1">
                 <h2 className="text-lg md:text-xl font-semibold">
                   Планування
                 </h2>
 
-                {/* 
-                  MOBILE:
-                  - aspect ratio → читається
-                  DESKTOP:
-                  - max-h від колонки
-                  - image масштабується, не ріжеться
-                */}
-                <div className="relative w-full aspect-[3/4] md:aspect-auto md:flex-1 md:min-h-0 border rounded-xl bg-white p-3 md:p-4">
+                <div className="relative w-full aspect-[3/4] md:flex-1 border rounded-xl bg-white p-3 md:p-4">
                   <Image
                     src={room.plan}
                     alt={`Планування ${room.title}`}
