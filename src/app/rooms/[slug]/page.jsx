@@ -10,7 +10,7 @@ const ROOMS = [
     id: 'r3',
     title: 'Suite with terrace',
     slug: 'suite-terrace',
-    images: ['025_DOM-HDR.jpg', '070_DOM-HDR.jpg', '052_DOM-HDR.jpg'],
+    images: ['025_DOM-HDR.jpg', '070_DOM-HDR.jpg', '052_DOM-HDR.jpg', '037_DOM-HDR.jpg', '606_DOM-HDR.jpg', '592_DOM-HDR.jpg'],
     plan: '/plans/vip-1.jpg',
     stats: [
       { label: 'Житлова площа', value: '43.8 м²' },
@@ -21,7 +21,7 @@ const ROOMS = [
     id: 'r4',
     title: 'Duplex suite with terrace',
     slug: 'duplex-suite-terrace',
-    images: ['469_DOM-HDR.jpg', '580_DOM-HDR.jpg', '502_DOM-HDR.jpg'],
+    images: ['469_DOM-HDR.jpg', '580_DOM-HDR.jpg', '502_DOM-HDR.jpg', '532_DOM.jpg', '562_DOM-HDR.jpg', '478_DOM-HDR.jpg'],
     plan: '/plans/vip-2.jpg',
     stats: [
       { label: 'Житлова площа', value: '67,5 м²' },
@@ -32,7 +32,7 @@ const ROOMS = [
     id: 'r5',
     title: 'Premium cottage with large terrace',
     slug: 'premium-cottage',
-    images: ['669_DOM-HDR.jpg', '690_DOM-HDR.jpg', '642_DOM-HDR.jpg'],
+    images: ['669_DOM-HDR.jpg', '690_DOM-HDR.jpg', '642_DOM-HDR.jpg', '704_DOM-HDR.jpg', '672_DOM-HDR.jpg', '663_DOM-HDR.jpg'],
     plan: '/plans/cottage.jpg',
     stats: [
       { label: 'Житлова площа', value: '62 м²' },
