@@ -21,7 +21,7 @@ const ROOMS = [
     id: 'r4',
     title: 'Duplex suite with terrace',
     slug: 'duplex-suite-terrace',
-    images: ['469_DOM-HDR.jpg', '580_DOM-HDR.jpg', '502_DOM-HDR.jpg', '532_DOM.jpg', '562_DOM-HDR.jpg', '478_DOM-HDR.jpg'],
+    images: ['469_DOM-HDR.jpg', '580_DOM-HDR.jpg', '502_DOM-HDR.jpg', '553_DOM-HDR.jpg', '562_DOM-HDR.jpg', '478_DOM-HDR.jpg'],
     plan: '/plans/vip-2.jpg',
     stats: [
       { label: 'Житлова площа', value: '67,5 м²' },
